@@ -10,14 +10,14 @@
 
     <div class="grid-box">
       <i-grid>
-        <i-grid-item i-class="grade-color">
+        <i-grid-item i-class="grade-color" @click="toExamPage">
           <i-grid-icon>
             <span class="layui-icon layui-icon-grade"></span>
           </i-grid-icon>
-          <i-grid-label>查看成绩</i-grid-label>
+          <i-grid-label>成绩</i-grid-label>
         </i-grid-item>
 
-        <i-grid-item>
+        <i-grid-item @click="moreFunction">
           <i-grid-icon>
             <span class="layui-icon layui-icon-more"></span>
           </i-grid-icon>
@@ -25,10 +25,24 @@
         </i-grid-item>
       </i-grid>
     </div>
+
+    <div class="info">
+      <div class="data">数据来源江苏大学能源与动力工程学院，仅供参考</div>
+      <div class="run">运营策划：江苏大学能源与动力工程学院</div>
+      <div class="support">技术支持：14级彭思文</div>
+    </div>
+
+    <div class="ad-box">
+      <ad unit-id="adunit-db7d552ed896d403"></ad>
+    </div>
+
+    <i-toast id="toast" />
   </div>
 </template>
 
 <script>
+const { $Toast } = require("../../../static/iview/base/index");
+
 export default {
   data() {
     return {
@@ -40,8 +54,32 @@ export default {
     };
   },
   methods: {
+    moreFunction() {
+      $Toast({
+        content: "更多功能策划中...",
+        type: "success"
+      });
+    },
     handleClick(e) {
       console.log(e);
+    },
+    toExamPage(e) {
+      wx.navigateTo({
+        url: "../exam/main",
+        events: {
+          // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+          acceptDataFromOpenedPage: function(data) {
+            console.log(data);
+          },
+          someEvent: function(data) {
+            console.log(data);
+          }
+        },
+        success: function(res) {
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit("acceptDataFromOpenerPage", { data: "test" });
+        }
+      });
     }
   }
 };
@@ -61,5 +99,33 @@ export default {
 .swiper-class image {
   width: 100%;
   height: 100%;
+}
+.ad-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  overflow: hidden;
+}
+.ad-box ad {
+  height: 80px !important;
+}
+.info {
+  left: 0;
+  right: 0;
+  position: absolute;
+  bottom: 80px;
+  margin-top: 40rpx;
+  font-size: 24rpx;
+  color: #dddee1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.info div {
+  text-align: center;
+}
+.info .support {
 }
 </style>

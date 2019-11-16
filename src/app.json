@@ -1,32 +1,10 @@
 {
-  "pages": ["pages/index/main", "pages/center/main"],
+  "pages": ["pages/index/main", "pages/exam/main", "pages/examinfo/main"],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "能动助手",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#f9f9f9"
-  },
-  "tabBar": {
-    "color": "#999",
-    "backgroundColor": "#fafafa",
-    "selectedColor": "#1AAD19",
-    "borderStyle": "white",
-
-    "list": [
-      {
-        "text": "功能列表",
-        "pagePath": "pages/index/main",
-        "iconPath": "static/tabs/index.png",
-        "selectedIconPath": "static/tabs/index-s.png"
-      },
-      {
-        "text": "个人中心",
-        "pagePath": "pages/center/main",
-        "iconPath": "static/tabs/stu.png",
-        "selectedIconPath": "static/tabs/stu-s.png"
-      }
-    ],
-    "position": "bottom"
   }
 }
