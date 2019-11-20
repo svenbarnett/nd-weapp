@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <swiper class="swiper-class" autoplay="True" interval="3000" duration="1000">
       <block v-for="(item, index) in imgUrls" :key="index">
         <swiper-item>
@@ -26,14 +26,14 @@
       </i-grid>
     </div>
 
+    <div class="ad-box">
+      <ad unit-id="adunit-db7d552ed896d403"></ad>
+    </div>
+
     <div class="info">
       <div class="data">数据来源江苏大学能源与动力工程学院，仅供参考</div>
       <div class="run">运营策划：江苏大学能源与动力工程学院</div>
       <div class="support">技术支持：14级彭思文</div>
-    </div>
-
-    <div class="ad-box">
-      <ad unit-id="adunit-db7d552ed896d403"></ad>
     </div>
 
     <i-toast id="toast" />
@@ -86,6 +86,8 @@ export default {
 </script>
 
 <style>
+.container {
+}
 .grid-box {
   margin-top: 10rpx;
 }
@@ -101,22 +103,17 @@ export default {
   height: 100%;
 }
 .ad-box {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  overflow: hidden;
+  margin: 40rpx 0;
 }
 .ad-box ad {
+  width: 300rpx;
+  margin: 2rpx auto;
   height: 80px !important;
+  border-radius: 10rpx;
 }
 .info {
-  left: 0;
-  right: 0;
-  position: absolute;
-  bottom: 80px;
-  margin-top: 40rpx;
+  margin: 40rpx 0;
+  width: 750rpx;
   font-size: 24rpx;
   color: #dddee1;
   display: flex;
@@ -127,5 +124,8 @@ export default {
   text-align: center;
 }
 .info .support {
+}
+.clearfix {
+  clear: both;
 }
 </style>

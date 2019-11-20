@@ -4,7 +4,7 @@
       <view>
         <input
           class="condition-input"
-          v-model="stuName"
+          v-model="name"
           type="text"
           placeholder="请输入姓名"
           maxlength="50"
@@ -70,8 +70,11 @@ export default {
     let yearLine2 = curYear - 1 + "-" + curYear;
     let yearLine3 = curYear - 2 + "-" + (curYear - 1);
     let yearLine4 = curYear - 3 + "-" + (curYear - 2);
-    this.yearObject.array.push(yearLine1, yearLine2, yearLine3, yearLine4);
+    var arr = [];
 
+    arr.push(yearLine1, yearLine2, yearLine3, yearLine4);
+
+    this.yearObject.array = arr;
     this.year = yearLine1;
     this.term = 1;
   },
@@ -108,7 +111,7 @@ export default {
       });
     },
     handleClick(e) {
-      let stuName = this.stuName,
+      let stuName = this.name,
         number = this.number,
         idnumber = this.idnumber,
         year = this.year,
