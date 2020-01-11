@@ -1,33 +1,23 @@
 <template>
   <div class="container">
-    <swiper class="swiper-class" autoplay="True" interval="3000" duration="1000">
-      <block v-for="(item, index) in imgUrls" :key="index">
-        <swiper-item>
-          <image :src="item" class="slide-image" width="355" height="150" />
-        </swiper-item>
-      </block>
-    </swiper>
-
-    <div class="grid-box">
-      <i-grid>
-        <i-grid-item i-class="grade-color" @click="toExamPage">
-          <i-grid-icon>
-            <span class="layui-icon layui-icon-grade"></span>
-          </i-grid-icon>
-          <i-grid-label>成绩</i-grid-label>
-        </i-grid-item>
-
-        <i-grid-item @click="moreFunction">
-          <i-grid-icon>
-            <span class="layui-icon layui-icon-more"></span>
-          </i-grid-icon>
-          <i-grid-label>敬请期待</i-grid-label>
-        </i-grid-item>
-      </i-grid>
+    <div>
+      <ul v-for="(item, index) in funList" v-bind:key="index">
+        <li class="func-box" :class="item.color" @click="navigator" :data-url="item.url">
+          <div class="name" :class="item.color">
+            <i :class="item.icon"></i>
+            <span>{{item.name}}</span>
+          </div>
+          <div class="desc">{{item.desc}}</div>
+        </li>
+      </ul>
     </div>
 
     <div class="ad-box">
       <ad unit-id="adunit-db7d552ed896d403"></ad>
+    </div>
+
+    <div class="official-box">
+      <official-account></official-account>
     </div>
 
     <div class="info">
@@ -46,62 +36,103 @@ const { $Toast } = require("../../../static/iview/base/index");
 export default {
   data() {
     return {
-      imgUrls: [
-        "https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640",
-        "https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640",
-        "https://images.unsplash.com/photo-1551446591-142875a901a1?w=640"
+      funList: [
+        {
+          url: "../exam/main",
+          name: "成绩查询",
+          color: "color-6a65d8",
+          icon: "layui-icon layui-icon-grade",
+          desc:
+            "为学生和家长提供在线移动端成绩查询！数据来源能动学院学工处，以实际为准，数据仅供参考！"
+        },
+        {
+          url: "WILL_BE_UP",
+          name: "资料获取",
+          color: "color-f55555",
+          icon: "layui-icon layui-icon-volunteer",
+          desc:
+            "功能对接能动学院能动文库，为学生提供相关专业知识，涉及考研资料，学业资料等！"
+        },
+        {
+          url: "",
+          name: "更多功能",
+          color: "color-6a6558",
+          icon: "layui-icon layui-icon-more",
+          desc:
+            "数据来源于能动学院学工处，仅供参考，为学生和家长提供在线移动端成绩查询！"
+        }
       ]
     };
   },
   methods: {
-    moreFunction() {
-      $Toast({
-        content: "更多功能策划中...",
-        type: "success"
-      });
-    },
-    handleClick(e) {
-      console.log(e);
-    },
-    toExamPage(e) {
-      wx.navigateTo({
-        url: "../exam/main",
-        events: {
-          // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-          acceptDataFromOpenedPage: function(data) {
-            console.log(data);
-          },
-          someEvent: function(data) {
-            console.log(data);
-          }
-        },
-        success: function(res) {
-          // 通过eventChannel向被打开页面传送数据
-          res.eventChannel.emit("acceptDataFromOpenerPage", { data: "test" });
-        }
-      });
+    navigator(e) {
+      let url = e.currentTarget.dataset.url;
+      if (url == "WILL_BE_UP") {
+        this.$options.willBeUp();
+        return;
+      }
+      if (url) {
+        wx.navigateTo({
+          url: url
+        });
+        return;
+      }
+      this.$options.moreFunction();
     }
+  },
+  moreFunction() {
+    $Toast({
+      content: "策划中...",
+      type: "success"
+    });
+  },
+  willBeUp() {
+    $Toast({
+      content: "即将上线...",
+      type: "success"
+    });
   }
 };
 </script>
 
 <style>
-.container {
+.func-box {
+  margin: 40rpx 20rpx;
+  border: 1px solid #dddddd;
+  border-radius: 10rpx;
+  padding: 5rpx;
+  box-shadow: #888888 2px 2px;
 }
-.grid-box {
-  margin-top: 10rpx;
+.func-box.color-6a65d8 {
+  border-left: 5px solid #6a65d8;
 }
-.grade-color,
-.i-grid-label {
+.func-box.color-f55555 {
+  border-left: 5px solid #f55555;
+}
+.func-box i {
+  display: inline-block;
+  margin: 40rpx;
+}
+.color-6a65d8 i {
   color: #6a65d8;
 }
-.swiper-class {
-  height: 420rpx;
+.color-f55555 i {
+  color: #f55555;
 }
-.swiper-class image {
-  width: 100%;
-  height: 100%;
+.func-box .name {
+  font-weight: bold;
+  font-size: 36rpx;
 }
+.func-box .desc {
+  color: #959699;
+  font-size: 28rpx;
+  margin: 4rpx 10rpx;
+}
+
+.grade-color {
+  color: #6a65d8;
+}
+
 .ad-box {
   margin: 40rpx 0;
 }
