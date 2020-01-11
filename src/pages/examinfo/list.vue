@@ -5,6 +5,8 @@
         <div>姓名：{{examinfo.name}}</div>
          <div>专业班级：{{examinfo.major}}-{{examinfo.classname}}</div>
           <div>学年学期：{{examinfo.year}}(第{{examinfo.term}}学期)</div>
+          <div>总学分：{{examinfo.allscore}}</div>
+           <div>已获学分：{{examinfo.getscore}}</div>
            <div>绩点(GPA)：{{examinfo.gpa}}</div>
            <div>名次：{{examinfo.rank}}</div>
         </div>

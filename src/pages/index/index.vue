@@ -56,7 +56,7 @@ export default {
         {
           url: "",
           name: "更多功能",
-          color: "color-6a6558",
+          color: "color-7ea12c",
           icon: "layui-icon layui-icon-more",
           desc:
             "数据来源于能动学院学工处，仅供参考，为学生和家长提供在线移动端成绩查询！"
@@ -109,6 +109,9 @@ export default {
 .func-box.color-f55555 {
   border-left: 5px solid #f55555;
 }
+.func-box.color-7ea12c {
+  border-left: 5px solid #7ea12c;
+}
 .func-box i {
   display: inline-block;
   margin: 40rpx;
@@ -118,6 +121,9 @@ export default {
 }
 .color-f55555 i {
   color: #f55555;
+}
+.color-7ea12c i {
+  color: #7ea12c;
 }
 .func-box .name {
   font-weight: bold;
