@@ -52,7 +52,7 @@ export default {
     // `this` 指向 vm 实例
     // console.log(e);
     wx.request({
-      url: "https://www.jsdxndxy.cn/api/v1/examinfo",
+      url: "https://www.jsdxndxy.cn/frame-web/api/v1/examinfo",
       data: e,
       method: "POST",
       header: {
