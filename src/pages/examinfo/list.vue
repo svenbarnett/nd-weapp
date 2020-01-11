@@ -8,6 +8,9 @@
           <div>总学分：{{examinfo.allscore}}</div>
            <div>已获学分：{{examinfo.getscore}}</div>
            <div>绩点(GPA)：{{examinfo.gpa}}</div>
+           <div class="desc">
+              <p>绩点=（分数-50）/10。如某生绩点为4.6，则该生的成绩=绩点*10+50=96分；</p>
+           </div>
            <div>名次：{{examinfo.rank}}</div>
         </div>
         <table>
@@ -106,7 +109,11 @@ tbody td.coursename {
 .stu-info > div {
   padding: 6rpx 10rpx;
   font-size: 24rpx;
-  height: 48rpx;
-  line-height: 48rpx;
+  margin: 20rpx 0;
+}
+.stu-info .desc p {
+  font-size: 22rpx;
+  color: #888888;
+  clear: both;
 }
 </style>
