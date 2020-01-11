@@ -12,18 +12,6 @@
       </view>
     </i-panel>
 
-    <i-panel title="学号：">
-      <view>
-        <input
-          class="condition-input"
-          v-model="number"
-          type="number"
-          placeholder="请输入学号"
-          maxlength="12"
-        />
-      </view>
-    </i-panel>
-
     <i-panel title="身份证号：">
       <view>
         <input
@@ -120,10 +108,6 @@ export default {
         this.doFailToast("姓名不能为空！");
         return false;
       }
-      if (!number && number == "") {
-        this.doFailToast("学号不能为空！");
-        return false;
-      }
       if (!idnumber && idnumber == "") {
         this.doFailToast("身份证不能为空！");
         return false;
@@ -140,8 +124,6 @@ export default {
         url:
           "../examinfo/main?name=" +
           stuName +
-          "&number=" +
-          number +
           "&idnumber=" +
           idnumber +
           "&year=" +
