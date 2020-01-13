@@ -9,7 +9,8 @@
            <div>已获学分：{{examinfo.getscore}}</div>
            <div>绩点(GPA)：{{examinfo.gpa}}</div>
            <div class="desc">
-              <p>绩点=（分数-50）/10。如某生绩点为4.6，则该生的成绩=绩点*10+50=96分；</p>
+              <p>1、绩点=（得分-50）/10。如某生绩点4.6，该生得分=绩点*10+50=96分；</p>
+              <p>2、家长可关注学院官方微信【江大能动订阅号】，了解学院学生动态；</p>
            </div>
            <div>名次：{{examinfo.rank}}</div>
         </div>
@@ -51,6 +52,7 @@ export default {
     var that = this;
     // `this` 指向 vm 实例
     // console.log(e);
+    this.examinfo = {};
     wx.request({
       url: "https://www.jsdxndxy.cn/frame-web/api/v1/examinfo",
       data: e,

@@ -65,6 +65,8 @@ export default {
     this.yearObject.array = arr;
     this.year = yearLine1;
     this.term = 1;
+    this.name = "";
+    this.idnumber = "";
   },
   data() {
     return {
@@ -120,28 +122,38 @@ export default {
         this.doFailToast("请选择学期！");
         return false;
       }
-      wx.navigateTo({
-        url:
-          "../examinfo/main?name=" +
-          stuName +
-          "&idnumber=" +
-          idnumber +
-          "&year=" +
-          year +
-          "&term=" +
-          term,
-        events: {
-          // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-          acceptDataFromOpenedPage: function(data) {
-            console.log(data);
-          },
-          someEvent: function(data) {
-            console.log(data);
-          }
+      wx.request({
+        url: "https://www.jsdxndxy.cn/frame-web/api/v1/examinfo",
+        data: {
+          idnumber: idnumber,
+          name: stuName,
+          term: term,
+          year: year
         },
-        success: function(res) {
-          // 通过eventChannel向被打开页面传送数据
-          res.eventChannel.emit("acceptDataFromOpenerPage", { data: "test" });
+        method: "POST",
+        header: {
+          "content-type": "application/json" // 默认值
+        },
+        success(res) {
+          var data = res.data;
+          if (data.code == 1) {
+            $Toast({
+              content: data.msg,
+              type: "error"
+            });
+            return false;
+          }
+          wx.navigateTo({
+            url:
+              "../examinfo/main?name=" +
+              stuName +
+              "&idnumber=" +
+              idnumber +
+              "&year=" +
+              year +
+              "&term=" +
+              term
+          });
         }
       });
     }

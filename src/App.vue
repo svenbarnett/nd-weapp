@@ -11,7 +11,7 @@ export default {
      * 支付宝(蚂蚁)：mpvue === my, mpvuePlatform === 'my'
      */
     // 初始化用户信息
-    new Token().verify();
+    // new Token().verify();
   }
 };
 </script>
